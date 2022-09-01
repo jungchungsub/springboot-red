@@ -10,7 +10,7 @@
 ```sql
 create table users(
     id number primary key,
-    username varchar2(20),
+    username varchar2(20) UNIQUE,
     password varchar2(20),
     email varchar2(50),
     createdAt TIMESTAMP
@@ -19,7 +19,24 @@ create table users(
 CREATE SEQUENCE users_seq 
 INCREMENT BY 1 
 START WITH 1;
+
+create table boards(
+    id number primary key,
+    title varchar2(150),
+    content clob,
+    usersId number,
+    createdAt TIMESTAMP,
+    CONSTRAINT fk_users_id foreign key(usersId) references users (id)
+);
+
+CREATE SEQUENCE boards_seq 
+INCREMENT BY 1 
+START WITH 1;
+
+
 ```
+
+
 
 ### 더미데이터 추가
 ```sql

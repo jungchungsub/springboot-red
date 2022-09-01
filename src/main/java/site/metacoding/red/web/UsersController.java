@@ -49,13 +49,14 @@ public class UsersController {
 	public RespDto<?> updatePassword(@PathVariable Integer id, String password){
 		
 		//1번 영속화
+		Users usersPS = usersDao.findById(id);
 		
 		// 2번 변경
+		usersPS.패스워드수정(password);
 		
 		// 3번 전체 업데이트 
-		
-		
-		return null;
+		return new RespDto<>(1, "회원패스워드 수정완료", null);
+
 	}
 	
 	@PutMapping("/users/{id}")
